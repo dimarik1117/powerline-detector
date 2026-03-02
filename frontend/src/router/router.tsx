@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Dashboard from "../pages/Dashboard";
-import NewAnalysis from "../pages/NewAnalysis";
-import History from "../pages/History";
-import AnalysisDetail from "../pages/AnalysisDetail";
-import Profile from "../pages/Profile";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import NewAnalysis from "../pages/NewAnalysis/NewAnalysis";
+import History from "../pages/History/History";
+import AnalysisDetail from "../pages/AnalysisDetail/AnalysisDetail";
+import Profile from "../pages/Profile/Profile";
 
 export default function AppRouter() {
   return (

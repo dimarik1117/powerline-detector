@@ -1,0 +1,64 @@
+.new-analysis {
+  padding: 40px 0;
+}
+
+.new-analysis__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-analysis__title {
+  font-size: 56px;
+  font-weight: 700;
+  margin: 0 0 40px;
+  color: #1e222e;
+}
+
+.new-analysis__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 300px 100px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.new-analysis__drag {
+  background: #aadcff;
+  border-radius: 50px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #1e222e;
+}
+
+.new-analysis__preview {
+  background: #60bcff;
+  border-radius: 0 50px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #1e222e;
+}
+
+.new-analysis__launch {
+  background: #60bcff;
+  border: none;
+  border-radius: 0 0 0 50px;
+  font-size: 36px;
+  cursor: pointer;
+  color: #1e222e;
+  padding: 0;
+}
+
+.new-analysis__loading {
+  background: #aadcff;
+  border-radius: 0 0 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: #1e222e;
+}

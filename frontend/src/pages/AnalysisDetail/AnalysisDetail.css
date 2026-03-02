@@ -1,0 +1,64 @@
+.analysis {
+  padding: 40px 0;
+}
+
+.analysis__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.analysis__title {
+  font-size: 56px;
+  font-weight: 700;
+  margin: 0 0 40px;
+  color: #1e222e;
+}
+
+.analysis__content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.analysis__image-block {
+  flex: 1;
+  background: #aadcff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px 0 0 50px;
+}
+
+.analysis__image-placeholder {
+  font-size: 48px;
+  color: #1e222e;
+  text-align: center;
+}
+
+.analysis__info-block {
+  flex: 1;
+  background: #60bcff;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  border-radius: 0 50px 50px 0;
+}
+
+.analysis__info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 36px;
+}
+
+.analysis__label {
+  color: #1e222e;
+}
+
+.analysis__value {
+  color: #1e222e;
+}

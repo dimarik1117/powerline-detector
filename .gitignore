@@ -30,3 +30,4 @@ backend/.env
 backend/.venv/
 backend/venv/
 backend/.pytest_cache/
+backend/app/api/__pycache__

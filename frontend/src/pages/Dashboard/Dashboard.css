@@ -1,0 +1,60 @@
+.dashboard {
+  padding: 40px 0;
+}
+
+.dashboard__hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard__hero-title {
+  font-size: 48px;
+  margin: 0 0 30px;
+}
+
+.dashboard__create-btn {
+  display: inline-block;
+  padding: 25px 200px;
+  background: #476bf0;
+  border-radius: 50px;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.dashboard__history {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dashboard__history-header {
+  width: 100%;
+  text-align: center;
+  background: #60bcff;
+  padding: 20px;
+  border-radius: 50px 50px 0 0;
+  font-size: 40px;
+}
+
+.dashboard__history-body {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 0 0 50px 50px;
+}
+
+.dashboard__history-body-title {
+  font-size: 28px;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.dashboard__history-body-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard__history-body-item {
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
