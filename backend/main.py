@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
+from app.db.database import engine, Base
 import uvicorn
 
 app = FastAPI(title="Power Line Detector API")
@@ -13,11 +14,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router, prefix="/api/v1")
+Base.metadata.create_all(bind=engine)
 
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}
+app.include_router(router)
 
 if __name__ == "__main__":
     uvicorn.run(
