@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from app.db.database import Base
 
@@ -11,3 +12,4 @@ class User(Base):
     password = Column(String)
     role = Column(String, default="user")
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    analyses = relationship("Analysis", back_populates="owner")
