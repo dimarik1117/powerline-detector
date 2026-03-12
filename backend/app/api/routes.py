@@ -7,7 +7,6 @@ from typing import List
 
 router = APIRouter(prefix="/api/v1/analyses", tags=["analyses"])
 
-# Dependency для БД
 def get_db():
     db = SessionLocal()
     try:
@@ -15,7 +14,7 @@ def get_db():
     finally:
         db.close()
 
-#CREATE
+# CREATE
 @router.post("/", response_model=AnalysisResponse)
 def create_analysis(data: AnalysisCreate, db: Session = Depends(get_db)):
     new_analysis = Analysis(image_path=data.image_path, poles_number=data.poles_number, processing_time=data.processing_time)
@@ -24,7 +23,7 @@ def create_analysis(data: AnalysisCreate, db: Session = Depends(get_db)):
     db.refresh(new_analysis)
     return new_analysis
 
-#READ ALL
+# READ ALL
 @router.get("/", response_model=List[AnalysisResponse])
 def get_analyses(db: Session = Depends(get_db)):
     return db.query(Analysis).all()
