@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.database import SessionLocal
 from app.models.analysis import Analysis
 from app.schemas.analysis import AnalysisCreate, AnalysisUpdate, AnalysisResponse
-from app.core.dependencies import get_current_user, get_admin_user
+from app.core.dependencies import get_current_user
 from typing import List
 
 router = APIRouter(prefix="/api/v1/analyses", tags=["analyses"])
