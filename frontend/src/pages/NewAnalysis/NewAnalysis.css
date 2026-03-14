@@ -21,6 +21,7 @@
   grid-template-rows: 300px 100px;
   width: 100%;
   max-width: 1200px;
+  gap: 0;
 }
 
 .new-analysis__drag {
@@ -31,6 +32,32 @@
   justify-content: center;
   font-size: 48px;
   color: #1e222e;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.new-analysis__drag:hover {
+  background: #9ac9f0;
+}
+
+.new-analysis__drag.has-file {
+  font-size: 24px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.file-size {
+  font-size: 18px;
+  color: #666;
 }
 
 .new-analysis__preview {
@@ -41,6 +68,14 @@
   justify-content: center;
   font-size: 48px;
   color: #1e222e;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .new-analysis__launch {
@@ -51,6 +86,16 @@
   cursor: pointer;
   color: #1e222e;
   padding: 0;
+  transition: background-color 0.3s;
+}
+
+.new-analysis__launch:hover:not(:disabled) {
+  background: #4da8e0;
+}
+
+.new-analysis__launch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .new-analysis__loading {
@@ -61,4 +106,37 @@
   justify-content: center;
   font-size: 36px;
   color: #1e222e;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 80%;
+  height: 30px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #476bf0;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1e222e;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
 }

@@ -24,6 +24,7 @@ frontend/*.sln
 frontend/*.sw?
 
 # Backend
+backend/uploads
 backend/__pycache__/
 backend/*.pyc
 backend/.env
@@ -35,3 +36,4 @@ backend/app/db/__pycache__
 backend/app/models/__pycache__
 backend/app/schemas/__pycache__
 backend/app/core/__pycache__
+backend/app/ml/__pycache__

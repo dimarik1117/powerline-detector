@@ -1,4 +1,4 @@
-import "./Footer.css";
+import './Footer.css';
 
 export default function Footer() {
   return (
@@ -12,8 +12,9 @@ export default function Footer() {
           href="https://github.com/dimarik1117/powerline-detector"
           target="_blank"
           rel="noopener noreferrer"
+          title="Открыть репозиторий на GitHub"
         >
-          Github: https://github.com/dimarik1117/powerline-detector
+          Открыть репозиторий на GitHub
         </a>
       </div>
     </footer>

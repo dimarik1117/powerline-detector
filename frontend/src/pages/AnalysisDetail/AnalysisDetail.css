@@ -1,5 +1,6 @@
 .analysis {
   padding: 40px 0;
+  min-height: calc(100vh - 200px);
 }
 
 .analysis__wrapper {
@@ -13,6 +14,7 @@
   font-weight: 700;
   margin: 0 0 40px;
   color: #1e222e;
+  text-align: center;
 }
 
 .analysis__content {
@@ -21,6 +23,8 @@
   max-width: 1200px;
   border-radius: 50px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 .analysis__image-block {
@@ -29,36 +33,101 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px 0 0 50px;
+  min-height: 500px;
+  max-height: 600px;
+  position: relative;
+  overflow: hidden;
 }
 
-.analysis__image-placeholder {
-  font-size: 48px;
+.analysis__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.analysis__image-placeholder,
+.image-loading {
+  font-size: 24px;
   color: #1e222e;
   text-align: center;
+  padding: 20px;
 }
 
 .analysis__info-block {
   flex: 1;
   background: #60bcff;
-  padding: 60px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 50px;
-  border-radius: 0 50px 50px 0;
 }
 
 .analysis__info-row {
   display: flex;
   justify-content: space-between;
-  font-size: 36px;
+  font-size: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .analysis__label {
   color: #1e222e;
+  font-size: 20px;
+  font-weight: 600;
+  min-width: 150px;
 }
 
 .analysis__value {
   color: #1e222e;
+  text-align: right;
+  word-break: break-word;
+}
+
+.analysis__boxes-info {
+  font-size: 18px;
+}
+
+.analysis__boxes-info h3 {
+  padding: 20px 0;
+  color: #1e222e;
+  font-size: 20px;
+}
+
+.analysis__boxes-info ul {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.analysis__boxes-info li {
+  padding: 8px 0;
+  color: #1e222e;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.back-to-history-btn {
+  padding: 15px 30px;
+  background: #476bf0;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.back-to-history-btn:hover {
+  background: #3655c0;
+}
+
+.loading, .error {
+  text-align: center;
+  font-size: 24px;
+  padding: 60px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
 }

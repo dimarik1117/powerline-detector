@@ -9,3 +9,13 @@
   align-items: center;
   font-size: 20px;
 }
+
+.footer__content a {
+  color: #476bf0;
+  transition: color 0.3s;
+}
+
+.footer__content a:hover:not(:disabled) {
+  color: #3655c0;
+  text-decoration: underline;
+}

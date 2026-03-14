@@ -18,7 +18,15 @@ def get_db():
 # CREATE
 @router.post("/", response_model=AnalysisResponse)
 def create_analysis(data: AnalysisCreate, db: Session = Depends(get_db), user = Depends(get_current_user)):
-    new_analysis = Analysis(image_path=data.image_path, poles_number=data.poles_number, processing_time=data.processing_time, user_id=user.id)
+    new_analysis = Analysis(
+        image_path=data.image_path, 
+        original_filename=data.original_filename,
+        poles_number=data.poles_number, 
+        processing_time=data.processing_time,
+        bounding_boxes=data.bounding_boxes,
+        user_id=user.id
+    )
+    
     db.add(new_analysis)
     db.commit()
     db.refresh(new_analysis)
@@ -76,7 +84,11 @@ def delete_analysis(analysis_id: int, db: Session = Depends(get_db), user = Depe
 
     if user.role != "admin" and analysis.user_id != user.id:
         raise HTTPException(status_code=403, detail="Access denied")
-
+    
+    import os
+    if os.path.exists(analysis.image_path):
+        os.remove(analysis.image_path)
+    
     db.delete(analysis)
     db.commit()
     return {"message": "Deleted successfully"}

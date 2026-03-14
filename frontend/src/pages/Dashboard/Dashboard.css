@@ -19,6 +19,11 @@
   border-radius: 50px;
   font-size: 32px;
   color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.dashboard__create-btn:hover {
+  background: #3655c0;
 }
 
 .dashboard__history {
@@ -33,6 +38,11 @@
   padding: 20px;
   border-radius: 50px 50px 0 0;
   font-size: 40px;
+  transition: background-color 0.3s;
+}
+
+.dashboard__history-header:hover {
+  background: #179eff;
 }
 
 .dashboard__history-body {
@@ -57,4 +67,24 @@
   font-size: 20px;
   margin-bottom: 15px;
   text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.dashboard__history-body-item:hover {
+  background: #e8f0fe;
+  border-color: #476bf0;
+  box-shadow: 0 4px 10px rgba(71, 107, 240, 0.2);
+}
+
+.dashboard__history-body-item:last-child {
+  margin-bottom: 0;
+}
+
+.no-analyses {
+  font-size: 20px;
+  text-align: center;
+  color: #848484;
 }
