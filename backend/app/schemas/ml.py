@@ -20,9 +20,8 @@ class DetectionResponse(BaseModel):
     bounding_boxes: List[BoundingBox]
     processing_time: float
 
-class AnalysisResponse(BaseModel):
-    id: Optional[int] = None
-    poles_number: int
-    processing_time: float
-    bounding_boxes: List[BoundingBox]
-    image_path: str
+class ModelInfo(BaseModel):
+    device: str
+    model_loaded: bool
+    model_type: str
+    classes: List[str]

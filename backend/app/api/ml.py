@@ -1,19 +1,20 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import Response
 from sqlalchemy.orm import Session
 import os
 import uuid
-from datetime import datetime
+import logging
 
 from app.db.database import SessionLocal
 from app.core.dependencies import get_current_user
 from app.models.analysis import Analysis
 from app.models.user import User
-from app.ml.model import model
+from app.ml.service import ml_service
 from app.schemas.ml import DetectionResult, BoundingBox, DetectionResponse
 from app.schemas.analysis import AnalysisResponse
 
 router = APIRouter(prefix="/api/v1/ml", tags=["ml"])
+logger = logging.getLogger(__name__)
 
 def get_db():
     db = SessionLocal()
@@ -24,9 +25,6 @@ def get_db():
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-
-class DetectionResponse(DetectionResult):
-    analysis_id: int
 
 @router.post("/detect", response_model=DetectionResponse)
 async def detect_poles(
@@ -40,13 +38,19 @@ async def detect_poles(
     try:
         contents = await file.read()
         
-        result = model.detect(contents)
+        logger.info(f"Начало обработки изображения {file.filename} пользователем {user.username}")
         
-        image_with_boxes = model.draw_boxes(contents, result["bounding_boxes"])
+        analysis_result = await ml_service.analyze_image(contents)
+        
+        if not analysis_result["success"]:
+            logger.error(f"Ошибка анализа: {analysis_result.get('error')}")
+            raise HTTPException(500, f"Ошибка анализа изображения: {analysis_result.get('error')}")
+        
+        result = analysis_result["result"]
+        image_with_boxes = analysis_result["image_with_boxes"]
         
         original_filename = file.filename
         
-        file_extension = os.path.splitext(original_filename)[1]
         unique_filename = f"{uuid.uuid4()}_{original_filename}"
         filepath = os.path.join(UPLOAD_DIR, unique_filename)
         
@@ -66,6 +70,8 @@ async def detect_poles(
         db.commit()
         db.refresh(db_analysis)
         
+        logger.info(f"Анализ завершен. ID: {db_analysis.id}, Опор: {result['poles_count']}")
+        
         boxes = [
             BoundingBox(
                 x=box["x"],
@@ -73,7 +79,7 @@ async def detect_poles(
                 width=box["width"],
                 height=box["height"],
                 confidence=box["confidence"],
-                class_name=box["class"]
+                class_name=box.get("class", "power_line_pole")
             )
             for box in result["bounding_boxes"]
         ]
@@ -85,11 +91,17 @@ async def detect_poles(
             processing_time=result["processing_time"]
         )
         
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(500, f"Ошибка при обработке изображения: {str(e)}")
+        logger.error(f"Неожиданная ошибка: {str(e)}")
+        raise HTTPException(500, f"Внутренняя ошибка сервера: {str(e)}")
 
 @router.get("/images/{filename}")
-async def get_image(filename: str, user: User = Depends(get_current_user)):
+async def get_image(
+    filename: str,
+    user: User = Depends(get_current_user)
+):
     filepath = os.path.join(UPLOAD_DIR, filename)
     
     if not os.path.exists(filepath):
@@ -121,3 +133,10 @@ async def get_analysis_image(
         content=open(analysis.image_path, "rb").read(),
         media_type="image/jpeg"
     )
+
+@router.get("/info")
+async def get_model_info(user: User = Depends(get_current_user)):
+    if user.role != "admin":
+        raise HTTPException(403, "Доступ запрещен")
+    
+    return ml_service.get_model_info()

@@ -93,7 +93,7 @@ export default function Dashboard() {
                     >
                       {getDisplayFilename(analysis)}:{' '}
                       {formatDate(analysis.created_at)};{' '}
-                      Опоры: {analysis.poles_number || '—'},{' '}
+                      Опоры: {analysis.poles_number || '0'},{' '}
                       Время: {analysis.processing_time?.toFixed(3) || '—'}с
                     </li>
                   ))}

@@ -196,7 +196,7 @@ export default function History() {
                       <tr key={item.id} className="history__row">
                         <td>{getDisplayFilename(item)}</td>
                         <td>{formatDate(item.created_at)}</td>
-                        <td className="number-cell">{item.poles_number || '—'}</td>
+                        <td className="number-cell">{item.poles_number || '0'}</td>
                         <td className="number-cell">
                           {item.processing_time?.toFixed(3) || '—'}
                         </td>

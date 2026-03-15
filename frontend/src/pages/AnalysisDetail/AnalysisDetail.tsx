@@ -167,7 +167,7 @@ export default function AnalysisDetail() {
                 <div className="analysis__info-row">
                   <span className="analysis__label">Кол-во опор:</span>
                   <span className="analysis__value">
-                    {analysis.poles_number || '—'}
+                    {analysis.poles_number || '0'}
                   </span>
                 </div>
 
